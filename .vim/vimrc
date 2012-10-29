@@ -11,6 +11,7 @@ Bundle 'gmarik/vundle'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'https://github.com/yandy/vim-omnicppcomplete.git'
+Bundle 'git://github.com/tpope/vim-surround.git'
 
 set ts=4
 set hidden
