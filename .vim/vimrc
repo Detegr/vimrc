@@ -12,6 +12,7 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'https://github.com/yandy/vim-omnicppcomplete.git'
 Bundle 'git://github.com/tpope/vim-surround.git'
+Bundle 'AutoComplPop'
 
 set ts=4
 set hidden
@@ -22,8 +23,8 @@ set history=100         " keep 100 lines of history
 set ruler               " show the cursor position
 syntax on               " syntax highlighting
 set hlsearch            " highlight the last searched term
-filetype plugin on      " use the file type plugins
-filetype indent on
+
+filetype plugin indent on
 
 set rnu
 set ignorecase
@@ -34,6 +35,7 @@ au BufEnter *.c set noexpandtab
 au BufEnter *.cpp set noexpandtab
 au BufEnter *.py set noexpandtab
 au BufEnter *.sh set noexpandtab
+au BufEnter *.java set noexpandtab
 
 colorscheme sonofobsidian
 set guifont=ProggyCleanTT\ 12.5
@@ -41,6 +43,7 @@ set guifont=ProggyCleanTT\ 12.5
 map <F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 inoremap <C-Space> <C-x><C-o>
+inoremap <Nul> <C-x><C-o>
 noremap <Space> za
 
 set tags+=~/.vim/tags/cpp
@@ -76,3 +79,22 @@ inoremap jj <ESC>
 
 au BufWinLeave *.* mkview
 au BufWinEnter *.* silent loadview
+
+au BufNewFile,BufRead,BufEnter *.java inoremap <C-Space> <C-x><C-u>
+au BufNewFile,BufRead,BufEnter *.java inoremap <Nul> <C-x><C-u>
+
+let g:acp_behaviorJavaEclimLength = 0
+function MeetsForJavaEclim(context)
+  return g:acp_behaviorJavaEclimLength >= 0 &&
+        \ a:context =~ '\k\.\k\{' . g:acp_behaviorJavaEclimLength . ',}$'
+endfunction
+let g:acp_behavior = {
+    \ 'java': [{
+      \ 'command': "\<c-x>\<c-u>",
+      \ 'completefunc' : 'eclim#java#complete#CodeComplete',
+      \ 'meets'        : 'MeetsForJavaEclim',
+    \ }]
+  \ }
+
+highlight Pmenu ctermbg=grey
+highlight PmenuSel ctermfg=black ctermbg=yellow
