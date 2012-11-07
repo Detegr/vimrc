@@ -13,6 +13,7 @@ Bundle 'FuzzyFinder'
 Bundle 'https://github.com/yandy/vim-omnicppcomplete.git'
 Bundle 'git://github.com/tpope/vim-surround.git'
 Bundle 'AutoComplPop'
+Bundle 'git://github.com/tpope/vim-fugitive.git'
 
 set ts=4
 set hidden
@@ -67,6 +68,10 @@ nnoremap <leader>b :FufBuffer<cr>
 nnoremap <leader>d :FufDir<cr>
 nnoremap <leader>o :FufFile<cr>
 nnoremap <leader>, :b#<cr>
+nnoremap <leader>1 :diffget //2<cr>:diffupdate<cr>
+nnoremap <leader>3 :diffget //3<cr>:diffupdate<cr>
+nnoremap <leader>s :Gstatus<cr>
+nnoremap <leader>c :Gcommit<cr>
 
 "nnoremap <leader>w <C-w>k
 "nnoremap <leader>s <C-w>j

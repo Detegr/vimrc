@@ -36,3 +36,7 @@ hi WarningMsg       guifg=#FFCD22
 hi Folded           guifg=#808080 guibg=#1C2325
 hi PMenu            guifg=#CCCCFF guibg=#1C2325
 hi PMenuSel         guibg=#2C3335
+hi DiffAdd term=reverse guibg=#272822 guifg=green
+hi DiffChange guibg=#32383A
+hi DiffText guibg=#32383A
+hi DiffDelete term=reverse guibg=#272822 guifg=red
