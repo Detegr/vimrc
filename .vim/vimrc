@@ -38,7 +38,11 @@ au BufEnter *.py set noexpandtab
 au BufEnter *.sh set noexpandtab
 au BufEnter *.java set noexpandtab
 
-colorscheme sonofobsidian
+if has("gui_running")
+	colorscheme sonofobsidian
+else
+	colorscheme 256-grayvim
+endif
 set guifont=ProggyCleanTT\ 12.5
  
 map <F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
