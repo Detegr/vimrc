@@ -8,8 +8,7 @@ call vundle#rc()
 " required! 
 Bundle 'gmarik/vundle'
 
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+Bundle 'https://github.com/kien/ctrlp.vim'
 Bundle 'https://github.com/yandy/vim-omnicppcomplete.git'
 Bundle 'git://github.com/tpope/vim-surround.git'
 Bundle 'AutoComplPop'
@@ -67,28 +66,16 @@ set foldlevel=1
 set nowrap
 
 let mapleader=","
-nnoremap <leader>e :FufCoverageFile<cr>
-nnoremap <leader>b :FufBuffer<cr>
-nnoremap <leader>d :FufDir<cr>
-nnoremap <leader>o :FufFile<cr>
+nnoremap <leader>e :CtrlP<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>d :CtrlPDir<cr>
+nnoremap <leader>m :CtrlPMRU<cr>
 nnoremap <leader>1 :diffget //2<cr>:diffupdate<cr>
 nnoremap <leader>3 :diffget //3<cr>:diffupdate<cr>
 nnoremap <leader>s :Gstatus<cr>
 nnoremap <leader>c :Gcommit<cr>
-nnoremap <leader>, :call CleverBufferSwitch()<cr>
+nnoremap <leader>, b#<cr>
 
-function! CleverBufferSwitch()
-	if buflisted(bufnr("#"))
-		buffer #
-	else
-		bnext
-	endif
-endfunction
-
-"nnoremap <leader>w <C-w>k
-"nnoremap <leader>s <C-w>j
-"nnoremap <leader>a <C-w>h
-"nnoremap <leader>d <C-w>l
 nnoremap <leader>q <C-w>c
 
 nnoremap <leader>v :vsplit<cr>
@@ -99,19 +86,6 @@ au BufWinEnter *.* silent loadview
 
 au BufNewFile,BufRead,BufEnter *.java inoremap <C-Space> <C-x><C-u>
 au BufNewFile,BufRead,BufEnter *.java inoremap <Nul> <C-x><C-u>
-
-let g:acp_behaviorJavaEclimLength = 0
-function MeetsForJavaEclim(context)
-  return g:acp_behaviorJavaEclimLength >= 0 &&
-        \ a:context =~ '\k\.\k\{' . g:acp_behaviorJavaEclimLength . ',}$'
-endfunction
-let g:acp_behavior = {
-    \ 'java': [{
-      \ 'command': "\<c-x>\<c-u>",
-      \ 'completefunc' : 'eclim#java#complete#CodeComplete',
-      \ 'meets'        : 'MeetsForJavaEclim',
-    \ }]
-  \ }
 
 highlight Pmenu ctermbg=grey
 highlight PmenuSel ctermfg=black ctermbg=yellow
