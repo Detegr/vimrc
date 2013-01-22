@@ -36,6 +36,12 @@ au BufEnter *.cpp set noexpandtab
 au BufEnter *.py set noexpandtab
 au BufEnter *.sh set noexpandtab
 au BufEnter *.java set noexpandtab
+au BufEnter *.rb set expandtab
+au BufEnter *.rb set smartindent
+au BufEnter *.rb set ts=2
+au BufEnter *.rb set sw=2
+au BufEnter *.rb set softtabstop
+
 
 if has("gui_running")
 	colorscheme sonofobsidian

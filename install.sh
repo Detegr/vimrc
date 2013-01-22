@@ -1,8 +1,21 @@
 #!/bin/bash
-mv $HOME/.vimrc $HOME/.vimrc_bak
-mv $HOME/.vim $HOME/.vim_bak
+if [[ -f "$HOME/.vimrc" ]]; then
+	echo "Backing up $HOME/.vimrc to $HOME/.vimrc_bak"
+	mv $HOME/.vimrc $HOME/.vimrc_bak
+fi
+if [[ -d "$HOME/.vim" ]]; then
+	echo "Backing up $HOME/.vim to $HOME/.vim_bak"
+	if [[ -d "$HOME/.vim_bak" ]]; then
+		echo "Removing old backup"
+		rm -r $HOME/.vim_bak
+	fi
+	mv $HOME/.vim $HOME/.vim_bak
+fi
 git submodule init
 git submodule update
+echo "Copying .vim to $HOME/.vim"
 cp -r .vim/ $HOME/.vim
+echo "Copying new .vimrc to $HOME/.vimrc"
 mv $HOME/.vim/vimrc $HOME/.vimrc
-vim +BundleInstall +qall
+echo "Installing bundles"
+vim +BundleClean +BundleInstall +qall
