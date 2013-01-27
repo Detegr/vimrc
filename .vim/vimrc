@@ -80,7 +80,7 @@ nnoremap <leader>1 :diffget //2<cr>:diffupdate<cr>
 nnoremap <leader>3 :diffget //3<cr>:diffupdate<cr>
 nnoremap <leader>s :Gstatus<cr>
 nnoremap <leader>c :Gcommit<cr>
-nnoremap <leader>, b#<cr>
+nnoremap <leader>, :b#<cr>
 
 nnoremap <leader>q <C-w>c
 
